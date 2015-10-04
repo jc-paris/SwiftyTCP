@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "448A19CE4EB044A8B9ED70230A621166F4C65E93",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "448A19CE4EB044A8B9ED70230A621166F4C65E93" : 0,
+    "D103E6C80511C252F34450B4EA10DD14DA3D348A" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "2E6465B4-6558-4F15-8A6E-0D7BF25AFEC7",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "448A19CE4EB044A8B9ED70230A621166F4C65E93" : "SwiftTCP\/",
+    "D103E6C80511C252F34450B4EA10DD14DA3D348A" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SwiftyTCP",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SwiftyTCP\/SwiftyTCP.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:jc-paris\/SwiftTCP.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "448A19CE4EB044A8B9ED70230A621166F4C65E93"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ssh:\/\/git.citywarfare.ovh:4242\/eip\/ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D103E6C80511C252F34450B4EA10DD14DA3D348A"
+    }
+  ]
+}

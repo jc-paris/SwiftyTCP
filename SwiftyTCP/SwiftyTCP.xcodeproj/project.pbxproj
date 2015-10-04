@@ -1,0 +1,442 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		12FEC5D11BC16823000BE5D8 /* SwiftyTCP.h in Headers */ = {isa = PBXBuildFile; fileRef = 12FEC5D01BC16823000BE5D8 /* SwiftyTCP.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		12FEC5D81BC16823000BE5D8 /* SwiftyTCP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12FEC5CD1BC16823000BE5D8 /* SwiftyTCP.framework */; settings = {ASSET_TAGS = (); }; };
+		12FEC5DD1BC16823000BE5D8 /* SwiftyTCPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FEC5DC1BC16823000BE5D8 /* SwiftyTCPTests.swift */; };
+		12FEC5E91BC16881000BE5D8 /* SwiftyTCP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FEC5E81BC16881000BE5D8 /* SwiftyTCP.swift */; settings = {ASSET_TAGS = (); }; };
+		12FEC5EB1BC16893000BE5D8 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FEC5EA1BC16893000BE5D8 /* Manager.swift */; settings = {ASSET_TAGS = (); }; };
+		12FEC5EE1BC168C6000BE5D8 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FEC5ED1BC168C6000BE5D8 /* Error.swift */; settings = {ASSET_TAGS = (); }; };
+		12FEC5F01BC168CF000BE5D8 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FEC5EF1BC168CF000BE5D8 /* Request.swift */; settings = {ASSET_TAGS = (); }; };
+		12FEC5F21BC168D8000BE5D8 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FEC5F11BC168D8000BE5D8 /* Result.swift */; settings = {ASSET_TAGS = (); }; };
+		12FEC5F51BC1690A000BE5D8 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FEC5F41BC1690A000BE5D8 /* ResponseSerialization.swift */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		12FEC5D91BC16823000BE5D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 12FEC5C41BC16823000BE5D8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 12FEC5CC1BC16823000BE5D8;
+			remoteInfo = SwiftyTCP;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		12FEC5CD1BC16823000BE5D8 /* SwiftyTCP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyTCP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		12FEC5D01BC16823000BE5D8 /* SwiftyTCP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyTCP.h; sourceTree = "<group>"; };
+		12FEC5D21BC16823000BE5D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12FEC5D71BC16823000BE5D8 /* SwiftyTCPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyTCPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		12FEC5DC1BC16823000BE5D8 /* SwiftyTCPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTCPTests.swift; sourceTree = "<group>"; };
+		12FEC5DE1BC16823000BE5D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12FEC5E81BC16881000BE5D8 /* SwiftyTCP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyTCP.swift; sourceTree = "<group>"; };
+		12FEC5EA1BC16893000BE5D8 /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		12FEC5ED1BC168C6000BE5D8 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		12FEC5EF1BC168CF000BE5D8 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		12FEC5F11BC168D8000BE5D8 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		12FEC5F41BC1690A000BE5D8 /* ResponseSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseSerialization.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		12FEC5C91BC16823000BE5D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12FEC5D41BC16823000BE5D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12FEC5D81BC16823000BE5D8 /* SwiftyTCP.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		12FEC5C31BC16823000BE5D8 = {
+			isa = PBXGroup;
+			children = (
+				12FEC5CF1BC16823000BE5D8 /* SwiftyTCP */,
+				12FEC5DB1BC16823000BE5D8 /* SwiftyTCPTests */,
+				12FEC5CE1BC16823000BE5D8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		12FEC5CE1BC16823000BE5D8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				12FEC5CD1BC16823000BE5D8 /* SwiftyTCP.framework */,
+				12FEC5D71BC16823000BE5D8 /* SwiftyTCPTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		12FEC5CF1BC16823000BE5D8 /* SwiftyTCP */ = {
+			isa = PBXGroup;
+			children = (
+				12FEC5E81BC16881000BE5D8 /* SwiftyTCP.swift */,
+				12FEC5EC1BC1689A000BE5D8 /* Core */,
+				12FEC5F31BC168FA000BE5D8 /* Features */,
+				12FEC5E71BC1685E000BE5D8 /* Supporting Files */,
+			);
+			path = SwiftyTCP;
+			sourceTree = "<group>";
+		};
+		12FEC5DB1BC16823000BE5D8 /* SwiftyTCPTests */ = {
+			isa = PBXGroup;
+			children = (
+				12FEC5DC1BC16823000BE5D8 /* SwiftyTCPTests.swift */,
+				12FEC5DE1BC16823000BE5D8 /* Info.plist */,
+			);
+			path = SwiftyTCPTests;
+			sourceTree = "<group>";
+		};
+		12FEC5E71BC1685E000BE5D8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				12FEC5D01BC16823000BE5D8 /* SwiftyTCP.h */,
+				12FEC5D21BC16823000BE5D8 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		12FEC5EC1BC1689A000BE5D8 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				12FEC5EA1BC16893000BE5D8 /* Manager.swift */,
+				12FEC5ED1BC168C6000BE5D8 /* Error.swift */,
+				12FEC5EF1BC168CF000BE5D8 /* Request.swift */,
+				12FEC5F11BC168D8000BE5D8 /* Result.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		12FEC5F31BC168FA000BE5D8 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				12FEC5F41BC1690A000BE5D8 /* ResponseSerialization.swift */,
+			);
+			name = Features;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		12FEC5CA1BC16823000BE5D8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12FEC5D11BC16823000BE5D8 /* SwiftyTCP.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		12FEC5CC1BC16823000BE5D8 /* SwiftyTCP */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 12FEC5E11BC16823000BE5D8 /* Build configuration list for PBXNativeTarget "SwiftyTCP" */;
+			buildPhases = (
+				12FEC5C81BC16823000BE5D8 /* Sources */,
+				12FEC5C91BC16823000BE5D8 /* Frameworks */,
+				12FEC5CA1BC16823000BE5D8 /* Headers */,
+				12FEC5CB1BC16823000BE5D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftyTCP;
+			productName = SwiftyTCP;
+			productReference = 12FEC5CD1BC16823000BE5D8 /* SwiftyTCP.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		12FEC5D61BC16823000BE5D8 /* SwiftyTCPTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 12FEC5E41BC16823000BE5D8 /* Build configuration list for PBXNativeTarget "SwiftyTCPTests" */;
+			buildPhases = (
+				12FEC5D31BC16823000BE5D8 /* Sources */,
+				12FEC5D41BC16823000BE5D8 /* Frameworks */,
+				12FEC5D51BC16823000BE5D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				12FEC5DA1BC16823000BE5D8 /* PBXTargetDependency */,
+			);
+			name = SwiftyTCPTests;
+			productName = SwiftyTCPTests;
+			productReference = 12FEC5D71BC16823000BE5D8 /* SwiftyTCPTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		12FEC5C41BC16823000BE5D8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Jean-Christophe Paris";
+				TargetAttributes = {
+					12FEC5CC1BC16823000BE5D8 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+					12FEC5D61BC16823000BE5D8 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 12FEC5C71BC16823000BE5D8 /* Build configuration list for PBXProject "SwiftyTCP" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 12FEC5C31BC16823000BE5D8;
+			productRefGroup = 12FEC5CE1BC16823000BE5D8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				12FEC5CC1BC16823000BE5D8 /* SwiftyTCP */,
+				12FEC5D61BC16823000BE5D8 /* SwiftyTCPTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		12FEC5CB1BC16823000BE5D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12FEC5D51BC16823000BE5D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		12FEC5C81BC16823000BE5D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12FEC5E91BC16881000BE5D8 /* SwiftyTCP.swift in Sources */,
+				12FEC5F51BC1690A000BE5D8 /* ResponseSerialization.swift in Sources */,
+				12FEC5F21BC168D8000BE5D8 /* Result.swift in Sources */,
+				12FEC5F01BC168CF000BE5D8 /* Request.swift in Sources */,
+				12FEC5EE1BC168C6000BE5D8 /* Error.swift in Sources */,
+				12FEC5EB1BC16893000BE5D8 /* Manager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12FEC5D31BC16823000BE5D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12FEC5DD1BC16823000BE5D8 /* SwiftyTCPTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		12FEC5DA1BC16823000BE5D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 12FEC5CC1BC16823000BE5D8 /* SwiftyTCP */;
+			targetProxy = 12FEC5D91BC16823000BE5D8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		12FEC5DF1BC16823000BE5D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		12FEC5E01BC16823000BE5D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		12FEC5E21BC16823000BE5D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SwiftyTCP/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "jc-paris.SwiftyTCP";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		12FEC5E31BC16823000BE5D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SwiftyTCP/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "jc-paris.SwiftyTCP";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		12FEC5E51BC16823000BE5D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SwiftyTCPTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "jc-paris.SwiftyTCPTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		12FEC5E61BC16823000BE5D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SwiftyTCPTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "jc-paris.SwiftyTCPTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		12FEC5C71BC16823000BE5D8 /* Build configuration list for PBXProject "SwiftyTCP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12FEC5DF1BC16823000BE5D8 /* Debug */,
+				12FEC5E01BC16823000BE5D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		12FEC5E11BC16823000BE5D8 /* Build configuration list for PBXNativeTarget "SwiftyTCP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12FEC5E21BC16823000BE5D8 /* Debug */,
+				12FEC5E31BC16823000BE5D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		12FEC5E41BC16823000BE5D8 /* Build configuration list for PBXNativeTarget "SwiftyTCPTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12FEC5E51BC16823000BE5D8 /* Debug */,
+				12FEC5E61BC16823000BE5D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 12FEC5C41BC16823000BE5D8 /* Project object */;
+}
