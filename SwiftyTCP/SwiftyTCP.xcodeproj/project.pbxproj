@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12C7CEE01BC187670078B6B4 /* SocketStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C7CEDF1BC187670078B6B4 /* SocketStream.swift */; settings = {ASSET_TAGS = (); }; };
 		12FEC5D11BC16823000BE5D8 /* SwiftyTCP.h in Headers */ = {isa = PBXBuildFile; fileRef = 12FEC5D01BC16823000BE5D8 /* SwiftyTCP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		12FEC5D81BC16823000BE5D8 /* SwiftyTCP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12FEC5CD1BC16823000BE5D8 /* SwiftyTCP.framework */; settings = {ASSET_TAGS = (); }; };
 		12FEC5DD1BC16823000BE5D8 /* SwiftyTCPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FEC5DC1BC16823000BE5D8 /* SwiftyTCPTests.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12C7CEDF1BC187670078B6B4 /* SocketStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketStream.swift; sourceTree = "<group>"; };
 		12FEC5CD1BC16823000BE5D8 /* SwiftyTCP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyTCP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		12FEC5D01BC16823000BE5D8 /* SwiftyTCP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyTCP.h; sourceTree = "<group>"; };
 		12FEC5D21BC16823000BE5D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				12FEC5ED1BC168C6000BE5D8 /* Error.swift */,
 				12FEC5EF1BC168CF000BE5D8 /* Request.swift */,
 				12FEC5F11BC168D8000BE5D8 /* Result.swift */,
+				12C7CEDF1BC187670078B6B4 /* SocketStream.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 			files = (
 				12FEC5E91BC16881000BE5D8 /* SwiftyTCP.swift in Sources */,
 				12FEC5F51BC1690A000BE5D8 /* ResponseSerialization.swift in Sources */,
+				12C7CEE01BC187670078B6B4 /* SocketStream.swift in Sources */,
 				12FEC5F21BC168D8000BE5D8 /* Result.swift in Sources */,
 				12FEC5F01BC168CF000BE5D8 /* Request.swift in Sources */,
 				12FEC5EE1BC168C6000BE5D8 /* Error.swift in Sources */,
