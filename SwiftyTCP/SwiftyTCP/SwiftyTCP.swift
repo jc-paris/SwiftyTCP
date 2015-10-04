@@ -8,3 +8,7 @@
 
 import Foundation
 
+public func request(type type: String, method: String, parameters: [String: AnyObject])-> Request
+{
+    return Manager.sharedInstance.request(type: type, method: method, parameters: parameters)
+}
