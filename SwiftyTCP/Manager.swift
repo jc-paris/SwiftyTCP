@@ -7,14 +7,15 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 public class Manager {
-    static let sharedInstance = Manager()
+    public static let sharedInstance = Manager()
 
     var socketStream : SocketStream?
     
     var requestId = 1
-    var delegate = SessionDelegate()
+    public var delegate = SessionDelegate()
     
 
     public func openSessionWithHost(host: String, onPort port: Int) {
@@ -31,42 +32,70 @@ public class Manager {
     public func request(tcpRequest: TCPRequest) -> Request {
         let request = Request(tcpRequest: tcpRequest)
         delegate[tcpRequest] = request.delegate
-        // TODO: write request on TCP Stream
         // Should check if SocketStream is open, else fill error with SocketStream not open an complete task
-        self.complete(tcpRequest)
+        socketStream?.write()
+//        self.complete(tcpRequest)
         return request
     }
 
-//    -- In case it's needed late
-
-    public class SessionDelegate: SocketStreamDelegate {
+    public class SessionDelegate: NSObject, SocketStreamDelegate {
         private var subdelegates: [String: Request.RequestDelegate] = [:]
         private let subdelegateQueue = dispatch_queue_create(nil, DISPATCH_QUEUE_CONCURRENT)
-
+        var timer: NSTimer!
+        
         subscript(request: TCPRequest) -> Request.RequestDelegate? {
             get {
                 if let requestId = request.requestId {
                     var subdelegate: Request.RequestDelegate?
-                    dispatch_sync(subdelegateQueue) {
-                        subdelegate = self.subdelegates[requestId]
-                    }
+                    subdelegate = self.subdelegates[requestId]
                     return subdelegate
                 }
                 return nil
             }
             
             set {
-                dispatch_barrier_async(subdelegateQueue) {
-                    if let requestId = request.requestId {
-                        self.subdelegates[requestId] = newValue
-                    }
+                if let requestId = request.requestId {
+                    self.subdelegates[requestId] = newValue
                 }
             }
         }
+
+        subscript(requestId: String) -> Request.RequestDelegate? {
+            get {
+                var subdelegate: Request.RequestDelegate?
+                subdelegate = self.subdelegates[requestId]
+                return subdelegate
+            }
+            set {
+                self.subdelegates[requestId] = newValue
+            }
+        }
+
+        public var sessionDidOpen: (Void -> Void)?
+        public var sessionDidFailToOpenWithError: (NSError -> Void)?
+        public var sessionDidClose: (Void -> Void)?
         
-        var sessionDidOpen: (Void -> Void)?
-        var sessionDidFailToOpenWithError: (NSError -> Void)?
-        var sessionDidClose: (Void -> Void)?
+        override init() {
+            super.init()
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "checkRequests", userInfo: nil, repeats: true)
+        }
+        
+        deinit {
+            self.timer.invalidate()
+        }
+        
+        func checkRequests() {
+            for (requestId , requestDelegate) in subdelegates {
+                if requestDelegate.state == .Running && requestDelegate.time?.timeIntervalSinceNow < -30 {
+                    self[requestId] = nil
+                    requestDelegate.state = .Completed
+                    let failureReason = "TCP request has timed out"
+                    let error = Error.errorWithCode(.RequestTimedOut, failureReason: failureReason)
+                    requestDelegate.didCompleteWithError(error)
+                }
+            }
+        }
+
         
         // Some delegate called from Socket stream call this blocks
         func didOpenSession() {
@@ -80,20 +109,36 @@ public class Manager {
         func sessionHasEnded() {
             sessionDidClose?()
         }
+        
+        func hasSomethingToWrite() -> String? {
+            for (_, requestDelegate) in subdelegates {
+                if requestDelegate.state == .Waiting {
+                    requestDelegate.time = NSDate()
+                    requestDelegate.state = .Running
+                    return requestDelegate.tcpRequest.toJSON()
+                }
+            }
+            return nil
+        }
+        
+        func didReceiveData(data: NSData) {
+            do {
+                let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
+                if let requestId = json["id"] as? String {
+                    if let delegate = self[requestId] {
+                        delegate.didReceivedData(data)
+                        delegate.didCompleteWithError(nil)
+                    }
+                    self[requestId] = nil
+                }
+                else {
+                    // Handle notification request
+                }
+            } catch {
+                // Do nothing
+            }
+            
+        }
     }
     
-}
-
-extension Manager { // SocketStream Delegate
-    func complete(request: TCPRequest) {
-        if let _ = request.requestId { // Check if there is a re
-            if let delegate = delegate[request] {
-                delegate.complete()
-            }
-            delegate[request] = nil
-        }
-        else {
-            // Handle notification request
-        }
-    }
 }

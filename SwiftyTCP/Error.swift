@@ -18,7 +18,8 @@ public struct Error {
     public enum Code: Int {
         case InputStreamReadFailed           = -6000
         case OutputStreamWriteFailed         = -6001
-        case JSONSerializationFailed         = -6006
+        case JSONSerializationFailed         = -6002
+        case RequestTimedOut                 = -6003
     }
     
     public static func errorWithCode(code: Code, failureReason: String) -> NSError {

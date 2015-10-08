@@ -9,9 +9,9 @@
 import Foundation
 
 public class TCPRequest {
-    let requestId: String?
+    var requestId: String?
     public var type: String!
-    public var method: String!
+    public var method: String?
     public var args: [String: AnyObject]?
     
     init(id: String, type: String, method: String, args: [String: AnyObject]) {
@@ -20,6 +20,49 @@ public class TCPRequest {
         self.method = method
         self.args = args
     }
+    
+    func toJSON() -> String {
+        var dct: [String: AnyObject] = ["type": type]
+        if let method = self.method {
+            dct["method"] = method
+        }
+        if let requestId = self.requestId {
+            dct["id"] = requestId
+        }
+        if let args = self.args {
+            dct["args"] = args
+        }
+        do {
+            let data = try NSJSONSerialization.dataWithJSONObject(dct, options: NSJSONWritingOptions())
+            return NSString(data: data, encoding: NSUTF8StringEncoding) as! String
+        } catch {
+            return ""
+        }
+    }
+    
+    init?(jsonData: String) {
+        let data = jsonData.dataUsingEncoding(NSUTF8StringEncoding)!
+        do {
+            let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
+            if let type = json["type"] as? String {
+                self.type = type
+                self.method = json["method"] as? String
+                self.requestId = json["id"] as? String
+                self.args = json["args"] as? [String: AnyObject]
+                return
+            }
+        } catch {
+            return nil
+        }
+    }
+}
+
+enum RequestState : Int {
+    case Waiting
+    case Running
+    case Suspended
+    case Canceling
+    case Completed
 }
 
 public class Request {
@@ -29,13 +72,16 @@ public class Request {
     init(tcpRequest: TCPRequest) {
         self.delegate = RequestDelegate(request: tcpRequest)
     }
+
     
     public class RequestDelegate {
         var tcpRequest: TCPRequest
         public let queue: NSOperationQueue
         
-        var data: NSData? { return nil }
+        var state: RequestState = .Waiting
+        var data: NSData?
         var error: ErrorType?
+        var time: NSDate?
         
         init(request: TCPRequest) {
             self.tcpRequest = request
@@ -57,7 +103,13 @@ public class Request {
             queue.suspended = false
         }
         
-        func complete() {
+        func didReceivedData(data: NSData) {
+            self.data = data
+        }
+        
+        func didCompleteWithError(error: NSError?) {
+            self.error = error
+            state = .Completed
             queue.suspended = false
         }
     }
@@ -74,7 +126,11 @@ extension Request: CustomStringConvertible {
         if let requestId = request.requestId {
             components.append("[\(requestId)]")
         }
-        components.append("\(request.type):\(request.method)")
+        if let method = request.method {
+            components.append("\(request.type):\(method)")
+        } else {
+            components.append("\(request.type)")
+        }
         
         return components.joinWithSeparator(" ")
     }
