@@ -75,6 +75,8 @@ public class Manager {
         public var sessionDidFailToOpenWithError: (NSError -> Void)?
         public var sessionDidClose: (Void -> Void)?
         
+        let timeout: NSTimeInterval = 5
+
         override init() {
             super.init()
             self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "checkRequests", userInfo: nil, repeats: true)
@@ -86,7 +88,7 @@ public class Manager {
         
         func checkRequests() {
             for (requestId , requestDelegate) in subdelegates {
-                if requestDelegate.state == .Running && requestDelegate.time?.timeIntervalSinceNow < -30 {
+                if requestDelegate.state == .Running, let time = requestDelegate.time?.timeIntervalSinceNow where time < -(timeout) {
                     self[requestId] = nil
                     requestDelegate.state = .Completed
                     let failureReason = "TCP request has timed out"
