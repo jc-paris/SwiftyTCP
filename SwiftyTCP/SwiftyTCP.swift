@@ -16,3 +16,8 @@ public func request(type type: String, method: String, parameters: [String: AnyO
 {
     return Manager.sharedInstance.request(type: type, method: method, parameters: parameters)
 }
+
+public func request(type type: String, method: String)-> Request
+{
+    return Manager.sharedInstance.request(type: type, method: method, parameters: [:])
+}

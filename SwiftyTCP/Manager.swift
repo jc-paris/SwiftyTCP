@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 public class Manager {
     public static let sharedInstance = Manager()
