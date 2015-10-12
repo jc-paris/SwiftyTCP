@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 /// The `Error` struct provides a convenience for creating custom SwiftyTCP NSErrors.
 public struct Error {
     /// The domain used for creating all SwiftyTCP errors.
@@ -30,4 +29,10 @@ public struct Error {
         let userInfo = [NSLocalizedFailureReasonErrorKey: failureReason]
         return NSError(domain: Domain, code: code, userInfo: userInfo)
     }
+
+    public static func errorWithCode(code: Int, failureReason: String, localizedDescription: String) -> NSError {
+        let userInfo = [NSLocalizedDescriptionKey: localizedDescription, NSLocalizedFailureReasonErrorKey: failureReason]
+        return NSError(domain: Domain, code: code, userInfo: userInfo)
+    }
+
 }

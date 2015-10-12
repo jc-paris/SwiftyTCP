@@ -10,7 +10,7 @@ import Foundation
 
 public class Manager {
     public static let sharedInstance = Manager()
-
+    public var debug = false
     var socketStream : SocketStream?
     
     var requestId = 1
@@ -19,6 +19,7 @@ public class Manager {
 
     public func openSessionWithHost(host: String, onPort port: Int) {
         socketStream = SocketStream(delegate: delegate)
+        socketStream?.debug = debug
         socketStream?.connectToHost(host, withPort: port)
     }
     

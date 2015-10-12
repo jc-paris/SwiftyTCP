@@ -31,6 +31,7 @@ protocol SocketStreamDelegate: class {
 }
 
 class SocketStream: NSObject {
+    var debug = false
     var inputStream: NSInputStream?
     var inputDataBuffer = [UInt8]()
     var inputTotalBytesRead: Int = 0
@@ -80,14 +81,17 @@ extension SocketStream {
                 if bytesWritten == -1 {
                     // Handle error
                 } else if bytesWritten == 0 {
-                    // Handle closed stream
+                    if debug == true {
+                        print("Socket: EndEncountered (disconnected)")
+                    }
+                    self.delegate?.sessionHasEnded()
                 } else {
                     outputTotalBytesWritten += bytesWritten
                     if outputTotalBytesExpectedToWrite == outputTotalBytesWritten {
                         let readbleData: [UInt8] = Array(outputDataBuffer[4..<outputDataBuffer.count])
                         let data = NSData(bytes: readbleData, length: outputDataBuffer.count - 4)
-
-                        if let string = NSString(bytes: data.bytes, length: data.length, encoding: NSUTF8StringEncoding) as? String {
+                        
+                        if debug == true, let string = NSString(bytes: data.bytes, length: data.length, encoding: NSUTF8StringEncoding) as? String {
                             print("## TCP: Write: [\(string)]")
                         }
                         outputTotalBytesExpectedToWrite = 0
@@ -111,20 +115,28 @@ extension SocketStream: NSStreamDelegate {
         switch eventCode {
         case NSStreamEvent.OpenCompleted:
             if inputStream?.streamStatus == .Open && outputStream?.streamStatus == .Open && streamsOpened == false {
-                print("Socket: OpenCompleted (connected)")
+                if debug == true {
+                    print("Socket: OpenCompleted (connected)")
+                }
                 streamsOpened = true
                 self.delegate?.didOpenSession()
             }
         case NSStreamEvent.ErrorOccurred:
-            print("Socket: ErrorOccurred (\(aStream.streamError?.localizedDescription))")
+            if debug == true {
+                print("Socket: ErrorOccurred (\(aStream.streamError?.localizedDescription))")
+            }
             if streamsOpened == false {
                 self.delegate?.didFailToOpenSessionWithError(aStream.streamError!)
             }
         case NSStreamEvent.EndEncountered:
-            print("Socket: EndEncountered (disconnected)")
+            if debug == true {
+                print("Socket: EndEncountered (disconnected)")
+            }
             self.delegate?.sessionHasEnded()
         case NSStreamEvent.HasBytesAvailable:
-            print("Socket: HasBytesAvailable (read)")
+            if debug == true {
+                print("Socket: HasBytesAvailable (read)")
+            }
             
             if inputDataBuffer.count < sizeof(UInt32.self) {
                 let bytesToRead = sizeof(UInt32.self) - inputDataBuffer.count
@@ -133,7 +145,10 @@ extension SocketStream: NSStreamDelegate {
                 if bytesRead == -1 {
                     // Handle error
                 } else if bytesRead == 0 {
-                    // Handle closed stream
+                    if debug == true {
+                        print("Socket: EndEncountered (disconnected)")
+                    }
+                    self.delegate?.sessionHasEnded()
                 } else {
                     inputTotalBytesRead += bytesRead
                     inputDataBuffer.appendContentsOf(buffer)
@@ -151,12 +166,15 @@ extension SocketStream: NSStreamDelegate {
                 if bytesRead == -1 {
                     // Handle error
                 } else if bytesRead == 0 {
-                    // Handle closed stream
+                    if debug == true {
+                        print("Socket: EndEncountered (disconnected)")
+                    }
+                    self.delegate?.sessionHasEnded()
                 } else {
                     inputTotalBytesRead += bytesRead
                     inputDataBuffer.appendContentsOf(buffer)
                     if inputTotalBytesExpectedToRead == inputTotalBytesRead {
-                        if let string = NSString(bytes: inputDataBuffer, length: inputDataBuffer.count, encoding: NSUTF8StringEncoding) as? String {
+                        if debug == true, let string = NSString(bytes: inputDataBuffer, length: inputDataBuffer.count, encoding: NSUTF8StringEncoding) as? String {
                             print("## TCP: Read: [\(string)]")
                         }
                         let data = NSData(bytes: inputDataBuffer, length: inputTotalBytesRead)
@@ -168,7 +186,9 @@ extension SocketStream: NSStreamDelegate {
                 }
             }
         case NSStreamEvent.HasSpaceAvailable:
-            print("Socket: HasSpaceAvailable (write)")
+            if debug == true {
+                print("Socket: HasSpaceAvailable (write)")
+            }
             self.write()
             break
         default:
