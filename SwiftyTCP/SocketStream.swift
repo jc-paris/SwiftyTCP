@@ -77,7 +77,8 @@ extension SocketStream {
         if outputStream?.hasSpaceAvailable == true {
             if outputDataBuffer.count != 0 {
                 let bytesToWrite = outputTotalBytesExpectedToWrite - outputTotalBytesWritten
-                let bytesWritten = outputStream!.write(outputDataBuffer, maxLength: bytesToWrite)
+                let outputBytes = Array(outputDataBuffer[outputTotalBytesWritten..<outputTotalBytesExpectedToWrite])
+                let bytesWritten = outputStream!.write(outputBytes, maxLength: bytesToWrite)
                 if bytesWritten == -1 {
                     // Handle error
                 } else if bytesWritten == 0 {
@@ -100,7 +101,7 @@ extension SocketStream {
                     }
                 }
             } else if let string = delegate?.hasSomethingToWrite() where string.characters.count != 0 {
-                let size = UInt32(string.characters.count).bigEndian
+                let size = UInt32(string.utf8.count).bigEndian
                 outputDataBuffer.appendContentsOf(Utility.toByteArray(size))
                 outputDataBuffer.appendContentsOf([UInt8](string.utf8))
                 outputTotalBytesExpectedToWrite = outputDataBuffer.count
@@ -138,7 +139,7 @@ extension SocketStream: NSStreamDelegate {
                 print("Socket: HasBytesAvailable (read)")
             }
             
-            if inputDataBuffer.count < sizeof(UInt32.self) {
+            if inputTotalBytesExpectedToRead == 0 {
                 let bytesToRead = sizeof(UInt32.self) - inputDataBuffer.count
                 var buffer = Array<UInt8>(count: bytesToRead, repeatedValue: 0) // init a empty buffer
                 let bytesRead = inputStream!.read(&buffer, maxLength: bytesToRead)
@@ -172,12 +173,12 @@ extension SocketStream: NSStreamDelegate {
                     self.delegate?.sessionHasEnded()
                 } else {
                     inputTotalBytesRead += bytesRead
-                    inputDataBuffer.appendContentsOf(buffer)
+                    inputDataBuffer.appendContentsOf(buffer[0..<bytesRead])
                     if inputTotalBytesExpectedToRead == inputTotalBytesRead {
                         if debug == true, let string = NSString(bytes: inputDataBuffer, length: inputDataBuffer.count, encoding: NSUTF8StringEncoding) as? String {
                             print("## TCP: Read: [\(string)]")
                         }
-                        let data = NSData(bytes: inputDataBuffer, length: inputTotalBytesRead)
+                        let data = NSData(bytes: inputDataBuffer, length: inputDataBuffer.count)
                         delegate?.didReceiveData(data)
                         inputDataBuffer = []
                         inputTotalBytesRead = 0

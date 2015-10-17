@@ -134,10 +134,13 @@ public class Manager {
                     self[requestId] = nil
                 }
                 else {
-                    // Handle notification request
+                    print("Received notifications: \(json)")
                 }
-            } catch {
-                // Do nothing
+            } catch let error {
+                print("Error parsing TCP JSON: \((error as NSError).localizedDescription)")
+                if let string = NSString(bytes: data.bytes, length: data.length, encoding: NSUTF8StringEncoding) as? String {
+                    print("JSON: \(string)")
+                }
             }
             
         }
