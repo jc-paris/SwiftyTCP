@@ -19,6 +19,8 @@ public struct Error {
         case OutputStreamWriteFailed         = -6001
         case JSONSerializationFailed         = -6002
         case RequestTimedOut                 = -6003
+        case SessionClosed                   = -6004
+        case SessionInvalidate               = -6005
     }
     
     public static func errorWithCode(code: Code, failureReason: String) -> NSError {

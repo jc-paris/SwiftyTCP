@@ -69,7 +69,11 @@ class SocketStream: NSObject {
         outputStream?.scheduleInRunLoop(NSRunLoop.currentRunLoop(), forMode: NSDefaultRunLoopMode)
         outputStream?.open()
     }
-
+    
+    func close() {
+        outputStream?.close()
+        inputStream?.close()
+    }
 }
 
 extension SocketStream {

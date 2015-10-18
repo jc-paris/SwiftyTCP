@@ -21,3 +21,11 @@ public func request(type type: String, method: String)-> Request
 {
     return Manager.sharedInstance.request(type: type, method: method, parameters: [:])
 }
+
+public func addHandler(name name: String, handler: NotificationHandler) {
+    Manager.sharedInstance.handler(name: name, handler: handler)
+}
+
+public func removeHandler(name name: String) {
+    Manager.sharedInstance.removeHandler(name: name)
+}

@@ -8,6 +8,8 @@
 
 import Foundation
 
+public typealias NotificationHandler = (NSData -> Bool)
+
 public class Manager {
     public static let sharedInstance = Manager()
     public var debug = false
@@ -23,6 +25,14 @@ public class Manager {
         socketStream?.connectToHost(host, withPort: port)
     }
     
+    public func closeSession() {
+        socketStream?.close()
+        socketStream = nil
+        delegate.handlers = [:]
+        delegate.empty()
+        requestId = 0
+    }
+    
     public func request(type type: String, method: String, parameters: [String: AnyObject]) -> Request {
         let tcpRequestId = requestId++
         let tcpRequest = TCPRequest(id: "\(tcpRequestId)", type: type, method: method, args: parameters)
@@ -32,15 +42,27 @@ public class Manager {
     public func request(tcpRequest: TCPRequest) -> Request {
         let request = Request(tcpRequest: tcpRequest)
         delegate[tcpRequest] = request.delegate
-        // Should check if SocketStream is open, else fill error with SocketStream not open an complete task
-        socketStream?.write()
-//        self.complete(tcpRequest)
+        if socketStream?.streamsOpened == true {
+            socketStream?.write()
+        } else {
+            let failureReason = "Session is not open"
+            let error = Error.errorWithCode(.SessionClosed, failureReason: failureReason)
+            request.delegate.didCompleteWithError(error)
+        }
         return request
     }
 
+    public func handler(name name: String, handler: NotificationHandler) {
+        delegate.handlers[name] = handler
+    }
+
+    public func removeHandler(name name: String) {
+        delegate.handlers[name] = nil
+    }
+    
     public class SessionDelegate: NSObject, SocketStreamDelegate {
         private var subdelegates: [String: Request.RequestDelegate] = [:]
-        private let subdelegateQueue = dispatch_queue_create(nil, DISPATCH_QUEUE_CONCURRENT)
+        private var handlers: [String: NotificationHandler] = [:]
         var timer: NSTimer!
         
         subscript(request: TCPRequest) -> Request.RequestDelegate? {
@@ -68,6 +90,16 @@ public class Manager {
             }
             set {
                 self.subdelegates[requestId] = newValue
+            }
+        }
+        
+        func empty() {
+            for (requestId , requestDelegate) in subdelegates {
+                self[requestId] = nil
+                requestDelegate.state = .Completed
+                let failureReason = "Session has been invalidate"
+                let error = Error.errorWithCode(.SessionInvalidate, failureReason: failureReason)
+                requestDelegate.didCompleteWithError(error)
             }
         }
 
@@ -134,12 +166,23 @@ public class Manager {
                     self[requestId] = nil
                 }
                 else {
-                    print("Received notifications: \(json)")
+                    if let type = json["type"] as? String, let method = json["method"] as? String {
+                        if let handler = handlers["\(type):\(method)"] {
+                            let result = handler(data)
+                            if result == false {
+                                print("SwiftyTCP: Warning: Hanlder failed to handle notification `\(type):\(method)`")
+                            }
+                        } else {
+                            print("SwiftyTCP: Warning: No handler for `\(type):\(method)`. Should unsubscribe !")
+                        }
+                    } else {
+                        print("SwiftyTCP: Error: Unknown TCP response: \(json)")
+                    }
                 }
             } catch let error {
-                print("Error parsing TCP JSON: \((error as NSError).localizedDescription)")
+                print("SwiftyTCP: Unable to parse JSON: \((error as NSError).localizedDescription)")
                 if let string = NSString(bytes: data.bytes, length: data.length, encoding: NSUTF8StringEncoding) as? String {
-                    print("JSON: \(string)")
+                    print("JSONString: \(string)")
                 }
             }
             
