@@ -45,8 +45,14 @@ class SocketStream: NSObject {
     var streamsOpened = false
     weak var delegate: SocketStreamDelegate?
     
+    var connectionFailure: (NSError -> Void)?
+    
     init(delegate: SocketStreamDelegate) {
+        super.init()
         self.delegate = delegate
+        self.connectionFailure = { error in
+            delegate.didFailToOpenSessionWithError(error)
+        }
     }
     
     deinit {
@@ -127,11 +133,13 @@ extension SocketStream: NSStreamDelegate {
                 self.delegate?.didOpenSession()
             }
         case NSStreamEvent.ErrorOccurred:
-            if debug == true {
+            //if debug == true {
                 print("Socket: ErrorOccurred (\(aStream.streamError?.localizedDescription))")
-            }
+            //}
             if streamsOpened == false {
-                self.delegate?.didFailToOpenSessionWithError(aStream.streamError!)
+                connectionFailure?(aStream.streamError!)
+                connectionFailure = nil
+//                self.delegate?.didFailToOpenSessionWithError(aStream.streamError!)
             }
         case NSStreamEvent.EndEncountered:
             if debug == true {

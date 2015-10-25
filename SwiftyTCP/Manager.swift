@@ -171,6 +171,8 @@ public class Manager {
                             let result = handler(data)
                             if result == false {
                                 print("SwiftyTCP: Warning: Hanlder failed to handle notification `\(type):\(method)`")
+                            } else {
+                                print("SwiftyTCP: Notifcation: \(NSString(bytes: data.bytes, length: data.length, encoding: NSUTF8StringEncoding) as! String)")
                             }
                         } else {
                             print("SwiftyTCP: Warning: No handler for `\(type):\(method)`. Should unsubscribe !")
