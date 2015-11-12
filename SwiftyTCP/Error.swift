@@ -37,4 +37,10 @@ public struct Error {
         return NSError(domain: Domain, code: code, userInfo: userInfo)
     }
 
+    public static func errorWithCode(code: Int, localizedDescription: String) -> NSError {
+        let userInfo = [NSLocalizedDescriptionKey: localizedDescription]
+        return NSError(domain: Domain, code: code, userInfo: userInfo)
+    }
+
+    
 }
