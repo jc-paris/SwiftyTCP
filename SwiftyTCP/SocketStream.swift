@@ -133,13 +133,12 @@ extension SocketStream: NSStreamDelegate {
                 self.delegate?.didOpenSession()
             }
         case NSStreamEvent.ErrorOccurred:
-            //if debug == true {
+            if debug == true {
                 print("Socket: ErrorOccurred (\(aStream.streamError?.localizedDescription))")
-            //}
+            }
             if streamsOpened == false {
                 connectionFailure?(aStream.streamError!)
                 connectionFailure = nil
-//                self.delegate?.didFailToOpenSessionWithError(aStream.streamError!)
             }
         case NSStreamEvent.EndEncountered:
             if debug == true {
