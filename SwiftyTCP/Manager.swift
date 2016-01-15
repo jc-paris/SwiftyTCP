@@ -7,6 +7,7 @@
 //
 
 import Foundation
+//import SwiftyJSON
 
 public typealias NotificationHandler = (NSData -> Bool)
 
@@ -170,12 +171,12 @@ public class Manager {
                         if let handler = handlers["\(type):\(method)"] {
                             let result = handler(data)
                             if result == false {
-                                print("SwiftyTCP: Warning: Hanlder failed to handle notification `\(type):\(method)`")
+                                print("SwiftyTCP: Warning: Hanlder failed to handle notification `\(type):\(method)`: \(json)")
                             } else {
                                 print("SwiftyTCP: Notifcation: \(NSString(bytes: data.bytes, length: data.length, encoding: NSUTF8StringEncoding) as! String)")
                             }
                         } else {
-                            print("SwiftyTCP: Warning: No handler for `\(type):\(method)`. Should unsubscribe !")
+                            print("!>!>!>!>!> SwiftyTCP: Warning: No handler for `\(type):\(method)`. Should unsubscribe !")
                         }
                     } else {
                         print("SwiftyTCP: Error: Unknown TCP response: \(json)")
