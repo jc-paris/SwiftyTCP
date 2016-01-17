@@ -173,10 +173,11 @@ public class Manager {
                             if result == false {
                                 print("SwiftyTCP: Warning: Hanlder failed to handle notification `\(type):\(method)`: \(json)")
                             } else {
+                                if type == "position" && method == "list" { return } // No log for this
                                 print("SwiftyTCP: Notifcation: \(NSString(bytes: data.bytes, length: data.length, encoding: NSUTF8StringEncoding) as! String)")
                             }
                         } else {
-                            print("!>!>!>!>!> SwiftyTCP: Warning: No handler for `\(type):\(method)`. Should unsubscribe !")
+                            print("!>!>!>!>!> SwiftyTCP: Warning: No handler for `\(type):\(method)`\n\(json["args"])")
                         }
                     } else {
                         print("SwiftyTCP: Error: Unknown TCP response: \(json)")
