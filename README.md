@@ -9,7 +9,7 @@
 
 ### 1. Connect on server IP:port
 ```swift
-Manager.sharedInstance.openSessionWithHost(game.ip, onPort: game.port)
+Manager.sharedInstance.openSessionWithHost("0.0.0.0", onPort: "4242")
 ```
 
 Optionnally, you may want to set a couple of configuration before:
